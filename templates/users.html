@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Пользователи{% endblock %}
+{% block content %}
+<h1 class="text-3xl font-bold mb-6">👥 Пользователи</h1>
+<div class="bg-white rounded-lg shadow-md overflow-hidden">
+    <table class="w-full text-left">
+        <thead class="bg-gray-200">
+            <tr>
+                <th class="px-4 py-3">ID</th>
+                <th class="px-4 py-3">User ID</th>
+                <th class="px-4 py-3">Username</th>
+                <th class="px-4 py-3">Имя</th>
+                <th class="px-4 py-3">Дата регистрации</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr class="border-t hover:bg-gray-50">
+                <td class="px-4 py-3">{{ user.id }}</td>
+                <td class="px-4 py-3 font-mono">{{ user.user_id }}</td>
+                <td class="px-4 py-3">{% if user.username %}@{{ user.username }}{% else %}—{% endif %}</td>
+                <td class="px-4 py-3">{{ user.first_name or '—' }}</td>
+                <td class="px-4 py-3">{{ user.created_at }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% if not users %}
+    <p class="p-6 text-gray-500">Пользователей пока нет.</p>
+    {% endif %}
+</div>
+{% endblock %}
