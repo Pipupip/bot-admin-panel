@@ -7,6 +7,7 @@
     <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">{{ error }}</div>
     {% endif %}
     <form method="post" action="/login">
+        <input type="hidden" name="csrf_token" value="{{ request.session.get('csrf_token', '') }}">
         <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2">Логин</label>
             <input type="text" name="username" required class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
